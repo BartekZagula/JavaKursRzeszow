@@ -8,10 +8,10 @@ public class Silnia {
         System.out.println("6! =" +silniaRecursive(6));
     }
 
-    public static int silnia(int arg2) {
+    public static int silnia(int arg) {
         int silnia = 1;
-        while (arg2 > 1){
-            silnia *= arg2--;
+        while (arg > 1){
+            silnia *= arg--;
         }
         return silnia;
     }
