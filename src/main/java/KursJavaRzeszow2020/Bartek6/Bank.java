@@ -145,4 +145,38 @@ public class Bank {
     public void setClients(List<Klient> clients) {
         this.clients = clients;
     }
+
+    public boolean deleteAccount(Klient klient, Rachunek rachunek){
+        if (checkCustomerOnList(klient)){
+            List<Rachunek> rachuneks = klient.getBills();
+            if(rachuneks.contains(rachunek)){
+                return removeAccountIfBalanceZero(rachunek, rachuneks);
+            }
+            return accountNotFound(rachunek);
+
+        }
+        return CustomerNotFound();
+    }
+
+    private boolean removeAccountIfBalanceZero(Rachunek rachunek, List<Rachunek> rachuneks) {
+        if(rachunek.getAccountBalance()== 0){
+            rachuneks.remove(rachunek);
+            System.out.println("Rachunek " + rachunek + "usuniety");
+            return true;
+        }
+        System.out.println("Na Rachunku " +rachunek + "sa pieniadze");
+        return false;
+    }
+
+    private boolean accountNotFound(Rachunek rachunek) {
+        System.out.println("nie znaleziono konta" + rachunek);
+        return false;
+    }
+
+    public void printAllBankAccounts(){
+        clients.stream().forEach(c ->
+        { List<Rachunek> customersAccounts = c.getBills();
+        customersAccounts.forEach(System.out::println);
+        });
+    }
 }
