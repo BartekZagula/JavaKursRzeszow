@@ -60,5 +60,10 @@ public class Rachunek {
         return Objects.hash(AccountNumber);
     }
 
-
+    @Override
+    public String toString() {
+        return "Rachunek{" +
+                "AccountNumber='" + AccountNumber + '\'' +
+                '}';
+    }
 }
