@@ -76,6 +76,21 @@ public class Bank {
         return false;
     }
 
+    public boolean deposit(Klient klient, Rachunek rachunek, int amount){
+        if(clients.contains(klient)){
+            List<Rachunek> accounts = klient.getBills();
+                    if(accounts.contains(rachunek)) {
+                        accounts.get(accounts.indexOf(rachunek)).deposit(amount);
+                        System.out.println("Wpłata " +amount+ " na rachunek" +
+                                rachunek + " zaksiegowana");
+                    }
+
+        }
+        System.out.println("Nie ma takiego klienta");
+        return false;
+    }
+
+
     private boolean checkCustomerOnList(Klient klient) {
         return clients.contains(klient);
     }
