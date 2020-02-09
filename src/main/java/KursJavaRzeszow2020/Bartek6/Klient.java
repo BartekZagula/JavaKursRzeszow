@@ -56,10 +56,8 @@ public class Klient  {
 
     @Override
     public String toString() {
-        return "Klient{" +
-                "FirstName='" + FirstName + '\'' +
-                ", SecondName='" + SecondName + '\'' +
-                '}';
+        return "Pan/Pani " + FirstName +" "
+                 + SecondName;
     }
 }
 

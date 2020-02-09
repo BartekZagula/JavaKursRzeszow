@@ -5,8 +5,22 @@ import java.util.List;
 
 public class Bank {
 
-    static Integer customerNumber = 0;
-    static Integer accountNumber = 0;
+    private static Integer customerNumber = 0;
+    private static Integer accountNumber = 0;
+
+    public String getNextCustomerNumber(){
+        String newId = customerNumber.toString();
+        customerNumber++;
+        return newId;
+
+    }
+
+    public String getNextAccountNumber(){
+        String newId = "IBAN" +accountNumber.toString();
+        accountNumber++;
+        return newId;
+
+    }
 
     private String name;
     private List<Klient> clients;
@@ -22,9 +36,8 @@ public class Bank {
             System.out.println("Klient " + klient + " jest juz w systemie");
             return false;
         }
-        klient.setUID(customerNumber.toString());
+        klient.setUID(getNextCustomerNumber());
         clients.add(klient);
-        customerNumber++;
         System.out.println("Klient " + klient + "dodany");
         return true;
 
@@ -51,10 +64,9 @@ public class Bank {
     public boolean addAccount(Klient klient, AccountKind accountKind) {
         if (checkCustomerOnList(klient)) {
             List<Rachunek> customerAccounts = klient.getBills();
-            Rachunek rachunek = new Rachunek("IBAN" + accountNumber.toString());
+            Rachunek rachunek = new Rachunek(getNextAccountNumber());
             rachunek.setAccountKind(accountKind);
             customerAccounts.add(rachunek);
-            accountNumber++;
             System.out.println("Dla klienta " + klient + "zostalo zalozone konto " + rachunek);
             return true;
         }
@@ -121,26 +133,16 @@ public class Bank {
         printAccountList(c, printBalance);
     }
 
-    public boolean deposit(Klient klient, Rachunek rachunek, int amount){
-        if(clients.contains(klient)){
-            List<Rachunek> accounts = klient.getBills();
-                    if(accounts.contains(rachunek)) {
-                        accounts.get(accounts.indexOf(rachunek)).deposit(amount);
-                        System.out.println("Wpłata " +amount+ " na rachunek" +
-                                rachunek + " zaksiegowana");
-                    }
-
-        }
-        System.out.println("Nie ma takiego klienta");
-        return false;
-    }
-
 
     private boolean checkCustomerOnList(Klient klient) {
         return clients.contains(klient);
     }
 
+    public List<Klient> getClients() {
+        return clients;
+    }
 
-
-
+    public void setClients(List<Klient> clients) {
+        this.clients = clients;
+    }
 }

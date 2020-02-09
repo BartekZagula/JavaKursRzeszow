@@ -17,7 +17,7 @@ public class Rachunek {
         AccountNumber = accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) { AccountNumber = accountNumber; }
+    public void setAccountNumber(String accountNumber) { this.AccountNumber = accountNumber; }
 
     public void setAccountKind(AccountKind accountKind) {
         this.accountKind = accountKind;
@@ -28,6 +28,8 @@ public class Rachunek {
     public String getAccountNumber() { return AccountNumber; }
 
     public double getAccountBalance() { return accountBalance; }
+
+
 
     public void deposit(int amount) {
 
@@ -57,4 +59,6 @@ public class Rachunek {
     public int hashCode() {
         return Objects.hash(AccountNumber);
     }
+
+
 }
