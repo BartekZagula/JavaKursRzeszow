@@ -37,5 +37,6 @@ public class TestBank {
         bank.printCustomerList(true);
 
         bank.printAllBankAccounts();
+        System.out.println("BlaBLa");
     }
 }
